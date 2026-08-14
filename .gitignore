@@ -1,17 +1,29 @@
+# Python
 venv/
-.env
-
 __pycache__/
 *.pyc
 
-uploads/
-reports/
-charts/
+# Environment / secrets
+.env
+.env.*
+!.env.example
 
+# Frontend
 frontend/node_modules/
 frontend/dist/
 
+# Generated files
+backend/charts/
+backend/uploads/
+backend/reports/
+
+# Logs
+*.log
+
+# IDE
 .vscode/
 .idea/
 
-*.db
+# OS
+.DS_Store
+Thumbs.db

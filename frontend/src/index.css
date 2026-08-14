@@ -1,0 +1,596 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background: #f5f7fb;
+  color: #172033;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.header {
+  background: #111827;
+  color: white;
+  padding: 28px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0 0 7px;
+  font-size: 28px;
+}
+
+.header p {
+  margin: 0;
+  color: #b9c2d0;
+}
+
+.status-badge {
+  background: #166534;
+  color: #dcfce7;
+  padding: 9px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   UPLOAD
+============================================================ */
+
+.upload-section {
+  padding: 45px 7% 20px;
+}
+
+.upload-content {
+  background: white;
+  border: 1px solid #e3e7ef;
+  border-radius: 18px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+}
+
+.upload-icon {
+  font-size: 42px;
+}
+
+.upload-content h2 {
+  margin: 12px 0 8px;
+}
+
+.upload-content p {
+  color: #667085;
+}
+
+.file-button {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 11px 20px;
+  background: #eef2ff;
+  color: #3730a3;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.file-button input {
+  display: none;
+}
+
+.selected-file {
+  margin-top: 15px;
+  color: #475467;
+}
+
+.analyze-button {
+  display: block;
+  margin: 22px auto 0;
+  border: none;
+  border-radius: 9px;
+  padding: 13px 28px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.analyze-button:hover {
+  background: #1d4ed8;
+}
+
+.analyze-button:disabled {
+  background: #aab4c3;
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   LOADING
+============================================================ */
+
+.loading-box {
+  margin: 25px auto 0;
+  max-width: 600px;
+  color: #475467;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  margin: auto;
+  border: 3px solid #dbeafe;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ============================================================
+   ERROR
+============================================================ */
+
+.error-box {
+  margin: 20px auto 0;
+  max-width: 700px;
+  padding: 13px;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #b42318;
+  border: 1px solid #fecaca;
+}
+
+
+/* ============================================================
+   RESULTS
+============================================================ */
+
+.results {
+  padding: 20px 7% 80px;
+}
+
+.results-title {
+  margin: 20px 0 30px;
+}
+
+.results-title h2 {
+  margin-bottom: 6px;
+}
+
+.results-title p {
+  color: #667085;
+}
+
+
+/* ============================================================
+   SECTION
+============================================================ */
+
+.section {
+  margin-bottom: 38px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.section-header p {
+  margin: 4px 0 0;
+  color: #667085;
+}
+
+.agent-number {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.count-badge {
+  margin-left: auto;
+  background: #eef2ff;
+  color: #3730a3;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   STAT CARDS
+============================================================ */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid #e4e7ec;
+  border-radius: 13px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.stat-icon {
+  font-size: 25px;
+}
+
+.stat-card p {
+  margin: 0 0 5px;
+  color: #667085;
+  font-size: 13px;
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+
+/* ============================================================
+   CARD
+============================================================ */
+
+.card {
+  background: white;
+  border: 1px solid #e4e7ec;
+  border-radius: 13px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* ============================================================
+   TAGS
+============================================================ */
+
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background: #f2f4f7;
+  border: 1px solid #e4e7ec;
+  padding: 6px 9px;
+  border-radius: 7px;
+  font-size: 12px;
+  color: #344054;
+}
+
+
+/* ============================================================
+   TABLE
+============================================================ */
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+th {
+  background: #f8fafc;
+  color: #475467;
+  font-size: 12px;
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #e4e7ec;
+}
+
+td {
+  padding: 11px 12px;
+  border-bottom: 1px solid #eef0f3;
+  font-size: 13px;
+}
+
+tr:hover td {
+  background: #fafbfc;
+}
+
+
+/* ============================================================
+   CATEGORY
+============================================================ */
+
+.category-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(230px, 1fr));
+  gap: 15px;
+}
+
+.category-card {
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.category-card h4 {
+  margin: 0 0 12px;
+}
+
+.category-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid #f2f4f7;
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   CORRELATION
+============================================================ */
+
+.correlation-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.correlation-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 9px;
+}
+
+.correlation-value {
+  font-weight: 800;
+  color: #2563eb;
+}
+
+
+/* ============================================================
+   PATTERNS
+============================================================ */
+
+.pattern-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.pattern-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.value-pill {
+  background: #dbeafe;
+  color: #1d4ed8;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   OUTLIERS
+============================================================ */
+
+.outlier-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(170px, 1fr));
+  gap: 13px;
+}
+
+.outlier-card {
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+  padding: 17px;
+}
+
+.outlier-card h4 {
+  margin: 0;
+}
+
+.outlier-number {
+  font-size: 27px;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+.outlier-card p {
+  margin-bottom: 0;
+  color: #667085;
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   CHARTS
+============================================================ */
+
+.charts-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(330px, 1fr));
+  gap: 20px;
+}
+
+.chart-card {
+  background: white;
+  border: 1px solid #e4e7ec;
+  border-radius: 13px;
+  padding: 15px;
+  overflow: hidden;
+}
+
+.chart-header {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.chart-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.chart-card p {
+  color: #667085;
+  font-size: 12px;
+  margin-bottom: 0;
+  word-break: break-all;
+}
+
+
+/* ============================================================
+   INSIGHTS
+============================================================ */
+
+.insights-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.insight-card {
+  background: white;
+  border: 1px solid #e4e7ec;
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  gap: 13px;
+}
+
+.insight-number {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.insight-card p {
+  margin: 4px 0 0;
+  line-height: 1.55;
+  font-size: 14px;
+  color: #344054;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 700px) {
+
+  .header {
+    padding: 22px 5%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .upload-section,
+  .results {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .upload-content {
+    padding: 30px 18px;
+  }
+
+  .section-header {
+    align-items: flex-start;
+  }
+
+  .count-badge {
+    display: none;
+  }
+
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
