@@ -13,6 +13,15 @@ from backend.agents.insight_agent import insight_agent
 class AnalysisState(TypedDict, total=False):
     file_path: str
 
+    # Internal keys used by Insight Agent
+    dataset: Any
+    preprocessing: Any
+    analysis: Any
+    patterns: Any
+    visualization: Any
+    insights: Any
+
+    # Keys expected by the frontend
     dataset_result: Any
     preprocessing_result: Any
     analysis_result: Any
@@ -29,6 +38,7 @@ def run_dataset_agent(state: AnalysisState):
     result = dataset_agent(state["file_path"])
 
     return {
+        "dataset": result,
         "dataset_result": result
     }
 
@@ -41,6 +51,7 @@ def run_preprocessing_agent(state: AnalysisState):
     result = preprocessing_agent(state["file_path"])
 
     return {
+        "preprocessing": result,
         "preprocessing_result": result
     }
 
@@ -53,6 +64,7 @@ def run_analysis_agent(state: AnalysisState):
     result = analysis_agent(state["file_path"])
 
     return {
+        "analysis": result,
         "analysis_result": result
     }
 
@@ -65,6 +77,7 @@ def run_pattern_agent(state: AnalysisState):
     result = pattern_agent(state["file_path"])
 
     return {
+        "patterns": result,
         "pattern_result": result
     }
 
@@ -77,6 +90,7 @@ def run_visualization_agent(state: AnalysisState):
     result = visualization_agent(state["file_path"])
 
     return {
+        "visualization": result,
         "visualization_result": result
     }
 
@@ -86,10 +100,13 @@ def run_visualization_agent(state: AnalysisState):
 # --------------------------------------------------
 
 def run_insight_agent(state: AnalysisState):
-    result = insight_agent(state["file_path"])
+    result = insight_agent(state)
+
+    insights = result.get("insights", {})
 
     return {
-        "insight_result": result
+        "insights": insights,
+        "insight_result": insights
     }
 
 
@@ -175,3 +192,4 @@ graph.add_edge(
 # --------------------------------------------------
 
 analysis_graph = graph.compile()
+

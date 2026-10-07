@@ -96,8 +96,14 @@ function App() {
   const charts =
     visualizationSummary.charts || [];
 
+  const aiInsights =
+    insightResult.ai_insights || {};
+    
+    console.log("INSIGHT RESULT:", insightResult);
+    console.log("AI INSIGHTS:", aiInsights);
+
   const insights =
-    insightResult.insight_summary?.insights || [];
+    aiInsights.key_insights || [];
 
   const getChartUrl = (chart) => {
     if (chart.startsWith("http")) {
@@ -798,7 +804,8 @@ function App() {
 
                         <span>
                           {" "}
-                          →{" "}
+                          →
+                          {" "}
                           {item.most_common_value}
                         </span>
 
@@ -916,10 +923,32 @@ function App() {
             </div>
 
 
+            {/* AI Summary */}
+
+            {aiInsights.summary && (
+
+              <div className="card">
+
+                <h3>
+                  AI Summary
+                </h3>
+
+                <p>
+                  {aiInsights.summary}
+                </p>
+
+              </div>
+
+            )}
+
+
+            {/* Key Insights */}
+
             <div className="insights-grid">
 
               {insights.map(
                 (insight, index) => (
+
                   <div
                     className="insight-card"
                     key={index}
@@ -929,15 +958,110 @@ function App() {
                       {index + 1}
                     </div>
 
+                    <h3>
+                      {insight.title}
+                    </h3>
+
                     <p>
-                      {insight}
+                      {insight.insight}
                     </p>
 
+                    {insight.evidence && (
+
+                      <div>
+
+                        <strong>
+                          Evidence:
+                        </strong>
+
+                        <p>
+                          {insight.evidence}
+                        </p>
+
+                      </div>
+
+                    )}
+
+                    {insight.interpretation && (
+
+                      <div>
+
+                        <strong>
+                          Business Interpretation:
+                        </strong>
+
+                        <p>
+                          {insight.interpretation}
+                        </p>
+
+                      </div>
+
+                    )}
+
                   </div>
+
                 )
               )}
 
             </div>
+
+
+            {/* Recommendations */}
+
+            {aiInsights.recommendations?.length > 0 && (
+
+              <div className="card">
+
+                <h3>
+                  Recommendations
+                </h3>
+
+                <ul>
+
+                  {aiInsights.recommendations.map(
+                    (recommendation, index) => (
+
+                      <li key={index}>
+                        {recommendation}
+                      </li>
+
+                    )
+                  )}
+
+                </ul>
+
+              </div>
+
+            )}
+
+
+            {/* Risk Factors */}
+
+            {aiInsights.risk_factors?.length > 0 && (
+
+              <div className="card">
+
+                <h3>
+                  Risk Factors & Limitations
+                </h3>
+
+                <ul>
+
+                  {aiInsights.risk_factors.map(
+                    (risk, index) => (
+
+                      <li key={index}>
+                        {risk}
+                      </li>
+
+                    )
+                  )}
+
+                </ul>
+
+              </div>
+
+            )}
 
           </section>
 
@@ -949,9 +1073,9 @@ function App() {
 }
 
 
-/* ============================================================
-   STAT CARD
-============================================================ */
+/* ============================================================ */
+/* STAT CARD */
+/* ============================================================ */
 
 function StatCard({
   title,
@@ -984,9 +1108,9 @@ function StatCard({
 }
 
 
-/* ============================================================
-   FORMAT NUMBER
-============================================================ */
+/* ============================================================ */
+/* FORMAT NUMBER */
+/* ============================================================ */
 
 function formatNumber(value) {
 
@@ -1008,9 +1132,9 @@ function formatNumber(value) {
 }
 
 
-/* ============================================================
-   GET STRONG CORRELATIONS
-============================================================ */
+/* ============================================================ */
+/* GET STRONG CORRELATIONS */
+/* ============================================================ */
 
 function getStrongCorrelations(correlationData) {
 
@@ -1066,3 +1190,4 @@ function getStrongCorrelations(correlationData) {
 
 
 export default App;
+
