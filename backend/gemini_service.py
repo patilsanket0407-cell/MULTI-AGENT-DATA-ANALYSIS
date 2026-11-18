@@ -8,18 +8,13 @@ from google.genai import types
 
 load_dotenv()
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
-if not GEMINI_API_KEY:
-    raise ValueError(
-        "GEMINI_API_KEY is not set. "
-        "Add your Gemini API key to the .env file."
-    )
-
-client = genai.Client(api_key=GEMINI_API_KEY)
-
-
 def generate_insights(verified_results):
+    api_key = os.getenv("GEMINI_API_KEY")
+
+    if not api_key:
+        raise RuntimeError("GEMINI_API_KEY is not configured")
+
+    client = genai.Client(api_key=api_key)
 
     prompt = f"""
 You are the Insight Agent in a Multi-Agent Data Analysis System.
