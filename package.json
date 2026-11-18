@@ -2,6 +2,7 @@
   "name": "multi-agent-data-analysis",
   "private": true,
   "scripts": {
+    "dev": "npm run frontend",
     "backend": "python -m uvicorn backend.main:app --reload",
     "frontend": "npm --prefix frontend run dev",
     "dev:all": "concurrently \"npm run backend\" \"npm run frontend\""
